@@ -62,7 +62,7 @@ if [ $# -ge 1 ]; then
     # 第3个参数是域名
     domain=${3}
     if [[ -z $domain ]]; then
-      domain="www.academia.edu"
+      domain="hivemoderation.com"
     fi
 
     # 第4个参数是UUID
@@ -258,7 +258,7 @@ fi
 if [[ -z $domain ]]; then
   echo -e "请输入一个 ${magenta}合适的域名${none} Input the domain"
   read -p "(例如: learn.microsoft.com): " domain
-  [ -z "$domain" ] && domain="www.academia.edu"
+  [ -z "$domain" ] && domain="hivemoderation.com"
 
   echo
   echo
