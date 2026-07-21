@@ -97,8 +97,8 @@ if [[ -n $uuid ]]; then
 
   #生成私钥公钥
   tmp_key=$(echo -n ${private_key} | xargs xray x25519 -i)
-  private_key=$(echo ${tmp_key} | awk '{print $3}')
-  public_key=$(echo ${tmp_key} | awk '{print $6}')
+  private_key=$(echo ${tmp_key} | awk '{print $2}')
+  public_key=$(echo ${tmp_key} | awk '{print $4}')
 
   #ShortID
   shortid=$(echo -n ${uuid} | sha1sum | head -c 16)
