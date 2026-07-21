@@ -88,20 +88,14 @@ apt install -y curl sudo jq cron
 echo
 echo -e "${yellow}官方脚本安装 Xray v26.3.27 版本$none"
 echo "----------------------------------------------------------------"
-bash -c "$(curl -L https://github.com/chenshuo-go/Xray-install/raw/main/install-release.sh)" @ install --version 26.3.27
+bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install --version 26.3.27
 
 # 如果脚本带参数执行的, 要在安装了xray之后再生成默认私钥公钥shortID
 if [[ -n $uuid ]]; then
-  #私钥种子
-  private_key=$(echo -n ${uuid} | md5sum | head -c 32 | base64 -w 0 | tr '+/' '-_' | tr -d '=')
-
-  #生成私钥公钥
-  tmp_key=$(echo -n ${private_key} | xargs xray x25519 -i)
-  private_key=$(echo ${tmp_key} | awk '{print $3}')
-  public_key=$(echo ${tmp_key} | awk '{print $6}')
-
-  #ShortID
-  shortid=$(echo -n ${uuid} | sha1sum | head -c 16)
+  shid=$(openssl rand -hex 8)
+  X25519Key=$(/usr/local/bin/xray x25519)
+  PrivateKey=$(echo "$X25519Key" | awk '{print $2}')
+  PublicKey=$(echo "$X25519Key" | awk '{print $4}')
   
   echo
   echo "私钥公钥要在安装xray之后才可以生成"
