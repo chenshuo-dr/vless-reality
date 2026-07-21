@@ -88,7 +88,7 @@ apt install -y curl sudo jq cron
 echo
 echo -e "${yellow}官方脚本安装 Xray v26.3.27 版本$none"
 echo "----------------------------------------------------------------"
-bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install --version 26.3.27
+bash -c "$(curl -L https://github.com/chenshuo-go/Xray-install/raw/main/install-release.sh)" @ install --version 26.3.27
 
 # 如果脚本带参数执行的, 要在安装了xray之后再生成默认私钥公钥shortID
 if [[ -n $uuid ]]; then
